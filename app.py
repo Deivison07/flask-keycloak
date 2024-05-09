@@ -1,8 +1,11 @@
 from flask import Flask
-
+from common.database import config_database
+from routers.routers import register_routes
 
 app = Flask(__name__) #app
 
+config_database(app) 
+register_routes(app)
 
 
 if __name__ == '__main__':

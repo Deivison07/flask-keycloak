@@ -5543,7 +5543,7 @@ INSERT INTO indices.Estado (CodEstado,SiglaEstado,NomeEstado,CodRegiao) VALUES
  (522230, 'Vila Propício', 9),
  (530010, 'Brasília', 7);
 
-INSERT INTO INDICE (CodMunicipio, Ano, IDH_Geral, IDH_Renda, IDH_Longevidade, IDH_Educacao) VALUES 
+INSERT INTO indices.INDICE (CodMunicipio, Ano, IDH_Geral, IDH_Renda, IDH_Longevidade, IDH_Educacao) VALUES 
 (354880, 1991, 0.842, 0.832, 0.782, 0.913),
 (350060, 1991, 0.848, 0.834, 0.811, 0.898),
 (330330, 1991, 0.817, 0.827, 0.717, 0.908),

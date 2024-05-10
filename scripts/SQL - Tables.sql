@@ -32,7 +32,12 @@ CREATE TABLE indices.Indice(
 	CONSTRAINT fk_indice_pk_unicipio FOREIGN KEY (CodMunicipio) REFERENCES indices.Municipio (CodMunicipio));
 
 
-CREATE VIEW indices.indice_municipio_view AS
-	SELECT indi.ano, muni.nomemunicipio, indi.idh_educacao, indi.idh_renda 
-	FROM indices.indice AS indi
-	INNER JOIN indices.municipio AS muni ON indi.codmunicipio = muni.codmunicipio;
+CREATE OR REPLACE VIEW indices.indice_municipio_view
+ AS
+ SELECT indi.ano,
+    indi.codmunicipio,
+    muni.nomemunicipio,
+    indi.idh_educacao,
+    indi.idh_renda
+   FROM indices.indice indi
+     JOIN indices.municipio muni ON indi.codmunicipio = muni.codmunicipio;

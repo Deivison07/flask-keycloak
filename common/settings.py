@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-database_host = os.getenv("DATABASE_IP")
+database_host = os.getenv("DATABASE_IP",'127.0.0.1')
 database_pass = os.getenv("DATABASE_PASS")
 database_port = os.getenv("DATABASE_PORT")
 database_name = os.getenv("DATABASE_NAME")

@@ -30,3 +30,9 @@ CREATE TABLE indices.Indice(
 	IDH_Educacao 	decimal(8,3) NOT NULL,
 	CONSTRAINT pk_indice PRIMARY KEY (CodMunicipio,Ano),
 	CONSTRAINT fk_indice_pk_unicipio FOREIGN KEY (CodMunicipio) REFERENCES indices.Municipio (CodMunicipio));
+
+
+CREATE VIEW indices.indice_municipio_view AS
+	SELECT indi.ano, muni.nomemunicipio, indi.idh_educacao, indi.idh_renda 
+	FROM indices.indice AS indi
+	INNER JOIN indices.municipio AS muni ON indi.codmunicipio = muni.codmunicipio;

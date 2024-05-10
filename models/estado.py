@@ -1,5 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Constraint, ForeignKeyConstraint
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Integer, String, ForeignKey, ForeignKeyConstraint
 from common.database import db
 from common.marshmallow import add_schema
 

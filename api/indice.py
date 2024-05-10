@@ -1,8 +1,5 @@
 from flask import jsonify, request
-from sqlalchemy import text
-from sqlalchemy.orm import Query
 from models.indice import Indice, IndiceByMunicipio
-from common.database import db
 
 def get_indice_all():
 

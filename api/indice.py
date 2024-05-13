@@ -1,6 +1,8 @@
 from flask import jsonify, request
 from models.indice import Indice, IndiceByMunicipio
 
+from common.settings import KeycloakClient
+
 def get_indice_all():
 
     page = request.args.get('page', 1, type=int)
@@ -20,9 +22,10 @@ def get_indice_all():
         'data': schema.dump(rows, many=True),
         'pagination': pagination_info
     }
-
     return jsonify(response), 200
 
+
+# @KeycloakClient.is_valid(request.json())
 def get_indice_municipio():
 
     page = request.args.get('page', 1, type=int)

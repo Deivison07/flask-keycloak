@@ -2,8 +2,8 @@
 from flask import jsonify, request
 from models.estado import Estado
 
-def get_estado_all():
 
+def get_estado_all():
     page = request.args.get('page', 1, type=int)
     per_page = request.args.get('per_page', 20, type=int)
     pagination = Estado.query.paginate(page=page, per_page=per_page)

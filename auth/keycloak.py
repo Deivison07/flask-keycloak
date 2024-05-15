@@ -7,7 +7,6 @@
 from cachetools import TTLCache
 from keycloak import KeycloakOpenID
 from keycloak.exceptions import KeycloakError, KeycloakAuthenticationError, KeycloakAuthorizationConfigError
-from requests import request
 
 class KeycloakClient():
     def __init__(self, keycloak: KeycloakOpenID, cache: TTLCache, cacheActive=True) -> None:
@@ -34,7 +33,7 @@ class KeycloakClient():
     def _setCache(self, token_id: str|int, body:any) -> None:
         self.cache.set(token_id, body)
 
-    def _is_valid(self, request: request) -> dict|bool:
+    def _is_valid(self, request) -> dict|bool:
 
         token = str(request.headers.get('Authorization')).removeprefix('Bearer ')
         if not token:
@@ -71,14 +70,14 @@ class KeycloakClient():
     def get_credentials_token(self) -> dict:
         return self.keycloak.token(grant_type='client_credentials')
     
-    def _role_in_client(self, role: str, request: request) -> bool:
+    def _role_in_client(self, role: str, request) -> bool:
 
         rolesList = self._is_valid(request=request)['resource_access'][self.keycloak.client_id]["roles"]
         if role in rolesList:
             return True
         return False
     
-    def is_valid(self, request:request):
+    def is_valid(self, request):
         def decorator(funcao):
             def wrapper(*args, **kwargs):
                 if self._is_valid(request):
@@ -87,7 +86,7 @@ class KeycloakClient():
             return wrapper
         return decorator
     
-    def role_in_client(self, role: str, request:request):
+    def role_in_client(self, role: str, request):
         def decorator(func):
             def wrapper(*args, **kwargs):
                 if self._role_in_client(role, request):

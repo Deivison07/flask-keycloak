@@ -11,6 +11,7 @@ def get_root():
 
 
 def register_routes(app: Flask) -> None:
+    
     app.add_url_rule('/', 'root', get_root, methods=['GET'])
     app.add_url_rule('/regioes', 'get_regioes', get_regiao_all, methods=['GET'])
     app.add_url_rule('/estados', 'get_estados', get_estado_all, methods=['GET'])

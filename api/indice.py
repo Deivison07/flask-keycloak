@@ -1,7 +1,7 @@
 from flask import jsonify, request
 from models.indice import Indice, IndiceByMunicipio
+from common.initial import keycloak_openid
 
-from common.settings import KeycloakClient
 
 def get_indice_all():
 
@@ -25,7 +25,7 @@ def get_indice_all():
     return jsonify(response), 200
 
 
-# @KeycloakClient.is_valid(request.json())
+@keycloak_openid.role_in_client( request=request, role='casa')
 def get_indice_municipio():
 
     page = request.args.get('page', 1, type=int)

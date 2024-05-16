@@ -1,21 +1,34 @@
 version: '3'
 
-volumes:
-  mysql_data:
-    driver: local
-
 services:
-
   flask:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
-    volumes:
-      - "./:/app"
+
     env_file:
       - .env
+      
+    networks:
+      - minha-rede
+
+  postgres:
+    image: postgres:14.6
+    restart: always
+    ports:
+      - "5430:5432"
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d/
+      - data-db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASS}
+      POSTGRES_DB: ${DATABASE_NAME}
+
+    networks:
+      - minha-rede
 
   mysql:
     image: mysql:5.7
@@ -26,6 +39,9 @@ services:
       MYSQL_DATABASE: keycloak
       MYSQL_USER: keycloak
       MYSQL_PASSWORD: password
+
+    networks:
+      - minha-rede
       
   keycloak:
     image: quay.io/keycloak/keycloak:latest
@@ -38,11 +54,23 @@ services:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: Pa55w0rd
       KEYCLOAK_ADMIN: root
-      KEYCLOAK_ADMIN_PASSWORD: root 
+      KEYCLOAK_ADMIN_PASSWORD: root
+      KEYCLOAK_FRONTEND_URL: "*"
 
+    networks:
+      - minha-rede
     command:
       ["start-dev"]
     ports:
       - 8080:8080
     depends_on:
       - mysql
+
+volumes:
+  mysql_data:
+    driver: local
+  data-db:
+    driver: local
+  
+networks:
+  minha-rede:

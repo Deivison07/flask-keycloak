@@ -43,10 +43,8 @@ class KeycloakClient():
         pk = self._inCache('public_key')
         if pk is None:
             pk = self.public_key()
-        
         #decodifica o token para descobrir o JTI
         token_id = self.keycloak.decode_token(token, pk)['jti']
-
         # veifica se o profile referente ao token está em cache
         prof = self._inCache(token_id)
         if prof is not None:

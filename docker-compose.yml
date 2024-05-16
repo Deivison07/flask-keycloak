@@ -7,10 +7,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
-
     env_file:
       - .env
-      
     networks:
       - minha-rede
 
@@ -26,7 +24,6 @@ services:
       POSTGRES_USER: ${DATABASE_USER}
       POSTGRES_PASSWORD: ${DATABASE_PASS}
       POSTGRES_DB: ${DATABASE_NAME}
-
     networks:
       - minha-rede
 
@@ -39,7 +36,6 @@ services:
       MYSQL_DATABASE: keycloak
       MYSQL_USER: keycloak
       MYSQL_PASSWORD: password
-
     networks:
       - minha-rede
       
@@ -55,8 +51,6 @@ services:
       KEYCLOAK_PASSWORD: Pa55w0rd
       KEYCLOAK_ADMIN: root
       KEYCLOAK_ADMIN_PASSWORD: root
-      KEYCLOAK_FRONTEND_URL: "*"
-
     networks:
       - minha-rede
     command:

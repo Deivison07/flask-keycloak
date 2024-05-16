@@ -4,6 +4,9 @@
 # Add a name of the mapper, select your client on the select box and enable "Add to access token".
 # Your client should now be in the "aud" field of the access token
 
+# no parametro <Frontend URL> nas configurações do realm <Realm settings> informe a url do frontend caso esteja trabalhando com clientes diferentes
+
+
 from cachetools import TTLCache
 from keycloak import KeycloakOpenID
 from keycloak.exceptions import KeycloakError, KeycloakAuthenticationError, KeycloakAuthorizationConfigError

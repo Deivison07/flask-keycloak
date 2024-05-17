@@ -1,4 +1,5 @@
 # Flask-Keycloak
+![imageProject](imageProject.jpg)
 
 Este projeto integra Flask com Keycloak para autenticação e autorização.
 

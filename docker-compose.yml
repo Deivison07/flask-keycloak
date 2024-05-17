@@ -51,10 +51,14 @@ services:
       KEYCLOAK_PASSWORD: Pa55w0rd
       KEYCLOAK_ADMIN: root
       KEYCLOAK_ADMIN_PASSWORD: root
+      KC_FEATURES: "scripts"
+      KC_SPI_SCRIPT_UPLOAD_ENABLED: true
+    volumes:
+      - ./keycloak/keycloak.json:/opt/keycloak/data/import/keycloak.json
     networks:
       - minha-rede
-    command:
-      ["start-dev"]
+    command: start-dev --import-realm
+      
     ports:
       - 8080:8080
     depends_on:

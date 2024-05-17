@@ -1,7 +1,7 @@
 # Flask-Keycloak
 ![imageProject](imageProject.jpg)
 
-Este projeto integra Flask com Keycloak para autenticação e autorização.
+Este projeto é uma aplicação web desenvolvida em Flask que disponibiliza informações sobre o Índice de Desenvolvimento Humano (IDH). Ele utiliza Keycloak para autenticação e autorização, garantindo que apenas usuários autenticados possam acessar os dados. O projeto também utiliza PostgreSQL como banco de dados SQL e é totalmente dockerizado, facilitando a configuração e a execução da aplicação em qualquer ambiente.
 
 ## Instalação
 

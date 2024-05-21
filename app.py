@@ -5,11 +5,7 @@ from jwcrypto.jwt import JWTExpired
 
 from routers.routers import register_routes
 
-app = Flask(__name__)                        #instancia Flask app
-
-app.config['CACHE_TYPE'] = 'simple'          # Use 'simple' para cache em memória
-app.config['CACHE_DEFAULT_TIMEOUT'] = 180    # Tempo de vida padrão
-app.config['CACHE_THRESHOLD'] = 10           # Tamanho máximo do cache
+app = Flask(__name__)   #instancia Flask app
 
 config_database(app)    #banco de dados
 register_routes(app)    #rotas 
